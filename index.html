@@ -121,13 +121,22 @@
   .treat{display:grid;grid-template-columns:1fr 1fr;gap:10px;list-style:none}
   .treat li{
     padding:18px 16px;border-radius:16px;border:1px solid var(--line);background:var(--white);
-    display:flex;flex-direction:column;gap:22px;min-height:118px;
+    display:flex;flex-direction:column;min-height:150px;
   }
-  .treat em{font-style:normal;font-size:13px;font-weight:700;color:var(--blue)}
+  .treat em{font-style:normal;font-size:13px;font-weight:700;color:var(--blue);margin-bottom:auto;padding-bottom:18px}
   .treat strong{font-size:16px;line-height:1.25;color:var(--navy);font-weight:700}
-  .treat li:first-child{background:var(--navy);border-color:var(--navy)}
-  .treat li:first-child em{color:#9fbbe0}
-  .treat li:first-child strong{color:#fff}
+  .treat p{margin-top:6px;font-size:13.5px;line-height:1.45;color:var(--muted)}
+  .treat .feat{
+    grid-column:1/-1;min-height:0;background:var(--navy);border-color:var(--navy);
+    position:relative;overflow:hidden;padding:22px 20px;
+  }
+  .treat .feat::after{
+    content:"";position:absolute;right:-40px;top:-40px;width:160px;height:160px;border-radius:50%;
+    border:28px solid rgba(255,255,255,.06);
+  }
+  .treat .feat em{color:#9fbbe0}
+  .treat .feat strong{color:#fff;font-size:22px;letter-spacing:-.02em}
+  .treat .feat p{color:#b9c7da;font-size:14.5px;max-width:30ch}
 
   /* mapa */
   .map{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);background:var(--tint)}
@@ -161,6 +170,31 @@
 
   .btn:focus-visible,.contact:focus-visible,.top-cta:focus-visible,.map-card a:focus-visible,footer a:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
 
+
+  /* destaque WhatsApp */
+  .contact-main{background:var(--navy)}
+  .contact-main:hover{background:var(--navy-2);border-color:transparent}
+  .contact-main .ic{background:#fff;color:var(--navy)}
+  .contact-main span,.contact-main .arr{color:#fff}
+  .contact-main small{color:#b9c7da}
+
+  .pills{display:flex;flex-wrap:wrap;gap:6px}
+  .pill-light{background:var(--white);color:var(--navy);border:1px solid var(--tint-2)}
+
+  /* barra fixa do celular */
+  .mbar{
+    position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:20;
+    display:flex;gap:8px;padding:8px;border-radius:18px;background:var(--white);
+    box-shadow:0 10px 30px rgba(12,35,64,.22),0 0 0 1px var(--line);
+    transform:translateY(140%);transition:transform .3s cubic-bezier(.2,.7,.2,1);
+  }
+  .mbar.on{transform:none}
+  .mbar a{display:flex;align-items:center;justify-content:center;gap:8px;height:50px;border-radius:12px;font-weight:700;font-size:15px}
+  .mbar-main{flex:1;background:var(--navy);color:#fff}
+  .mbar-call{width:50px;background:var(--tint);color:var(--navy)}
+  .mbar svg{width:20px;height:20px}
+  @media (min-width:700px){.mbar{display:none}}
+
   /* ===== tablet ===== */
   @media (min-width:700px){
     .wrap{padding:0 32px}
@@ -171,7 +205,7 @@
     .contacts{grid-template-columns:repeat(3,1fr)}
     .contact{flex-direction:column;align-items:flex-start;gap:18px;padding:20px}
     .contact .arr{display:none}
-    .treat{grid-template-columns:repeat(3,1fr)}
+    .treat{grid-template-columns:repeat(4,1fr)}
     .map iframe{height:360px}
     .map-card{left:auto;right:16px;bottom:16px;width:360px}
     .band .wrap{grid-template-columns:1fr auto;align-items:center;padding-top:56px;padding-bottom:56px}
@@ -214,7 +248,7 @@
       </div>
 
       <div class="intro">
-        <span class="pill">Cirurgião-Dentista</span>
+        <div class="pills"><span class="pill">Cirurgião-Dentista</span><span class="pill pill-light">Brasília, DF</span></div>
         <h1>Dr. Lucas<br><span>Xavier</span></h1>
         <p class="lead">Atendimento odontológico completo, do diagnóstico ao tratamento, com planejamento individual para cada paciente.</p>
         <!-- CRO: descomentar quando tiver o número -->
@@ -238,7 +272,7 @@
       <section>
         <div class="head"><b>01</b><h2>Fale comigo</h2></div>
         <div class="contacts">
-          <a class="contact" href="https://wa.me/5561983047777" target="_blank" rel="noopener">
+          <a class="contact contact-main" href="https://wa.me/5561983047777" target="_blank" rel="noopener">
             <div class="ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.4-.3Z"/></svg></div>
             <span>WhatsApp<small>(61) 98304-7777</small></span>
             <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -266,12 +300,11 @@
       <section>
         <div class="head"><b>02</b><h2>Tratamentos</h2></div>
         <ul class="treat">
-          <li><em>01</em><strong>Implantes dentários</strong></li>
-          <li><em>02</em><strong>Lentes e facetas</strong></li>
-          <li><em>03</em><strong>Clareamento</strong></li>
-          <li><em>04</em><strong>Ortodontia</strong></li>
-          <li><em>05</em><strong>Clínica geral</strong></li>
-          <li><em>06</em><strong>Urgências</strong></li>
+          <li class="feat"><em>01</em><strong>Implantes dentários</strong><p>Reposição de dentes perdidos com segurança e aparência natural.</p></li>
+          <li><em>02</em><strong>Lentes e facetas</strong><p>Estética do sorriso com resultado natural.</p></li>
+          <li><em>03</em><strong>Clareamento</strong><p>Dentes mais claros com acompanhamento profissional.</p></li>
+          <li><em>04</em><strong>Clínica geral</strong><p>Prevenção, limpeza e restaurações.</p></li>
+          <li><em>05</em><strong>Urgências</strong><p>Atendimento para dor e imprevistos.</p></li>
         </ul>
       </section>
     </div>
@@ -315,6 +348,25 @@
     </nav>
   </div>
 </footer>
+<div class="mbar" id="mbar" aria-hidden="true">
+  <a class="mbar-main" href="https://wa.me/5561983047777?text=Ol%C3%A1%2C%20Dr.%20Lucas!%20Gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" rel="noopener" tabindex="-1">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.4-.3Z"/></svg>
+    Agendar avaliação
+  </a>
+  <a class="mbar-call" href="tel:+5561983047777" aria-label="Ligar" tabindex="-1">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"/></svg>
+  </a>
+</div>
+<script>
+(function(){
+  var bar=document.getElementById('mbar'),hero=document.querySelector('.actions'),band=document.querySelector('.band');
+  if(!('IntersectionObserver' in window)||!bar)return;
+  var heroOn=true,bandOn=false;
+  function upd(){var show=!heroOn&&!bandOn;bar.classList.toggle('on',show);bar.setAttribute('aria-hidden',!show);bar.querySelectorAll('a').forEach(function(a){a.tabIndex=show?0:-1})}
+  new IntersectionObserver(function(e){heroOn=e[0].isIntersecting;upd()}).observe(hero);
+  new IntersectionObserver(function(e){bandOn=e[0].isIntersecting;upd()}).observe(band);
+})();
+</script>
 <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
 </body>
 </html>
